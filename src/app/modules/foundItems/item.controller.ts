@@ -2,9 +2,7 @@ import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 import { foundItemServices } from "./item.services";
-import { User } from '@prisma/client';
 import AppError from "../../errors/AppError";
-import prisma from "../../../shared/prisma";
 import pick from "../../../shared/pick";
 import { itemFilterableFields } from "./item.constant";
 
