@@ -1,8 +1,8 @@
 - # Lose and Found Application
-- Make a flat share application with typescript,express,prisma,postgresql etc.
+- Make a Lose and Found application with typescript,express,prisma,postgresql etc.
 
 - ## Host Link
-- Hosted in Vercel => 
+- Hosted in Vercel => https://lfsystem-gamma.vercel.app/
 
 - ## Technology used
 - Typescript

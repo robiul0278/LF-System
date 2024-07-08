@@ -2,8 +2,13 @@ import { UserStatus } from "@prisma/client";
 import prisma from "../../../shared/prisma";
 import AppError from "../../errors/AppError";
 import httpStatus from "http-status";
+import { TClaimItem, TUpdateClaim } from "./claim.interface";
 
-const createClaim = async (payload: any, userId: string) => {
+// ============================
+// Create Claim  ======
+// ============================
+
+const createClaim = async (payload: TClaimItem, userId: string) => {
 //   console.log(payload);
 
   const user = await prisma.user.findUnique({
@@ -36,6 +41,11 @@ const createClaim = async (payload: any, userId: string) => {
   return result;
 };
 
+// ============================
+// Get All Claim  ======
+// ============================
+
+
 const getAllClaim = async () => {
   const result = await prisma.claim.findMany({
     include: {
@@ -59,8 +69,12 @@ const getAllClaim = async () => {
   return result;
 };
 
-const updateClaimStatus = async (payload: any, claimId: string) => {
-//   console.log(payload, claimId);
+// ============================
+// Update Claim  ======
+// ============================
+
+
+const updateClaimStatus = async (payload: TUpdateClaim, claimId: string) => {
   const result = await prisma.claim.update({
     where: {
       id: claimId,

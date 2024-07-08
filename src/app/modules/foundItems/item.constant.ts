@@ -6,6 +6,7 @@ export const itemSearchAbleFields: string[] = [
 ];
 
 
+
 export const itemFilterableFields: string[] =  [
     'foundItemName',
     'location',

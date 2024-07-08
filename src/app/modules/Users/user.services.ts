@@ -3,13 +3,14 @@ import * as bcrypt from "bcrypt";
 import prisma from "../../../shared/prisma";
 import AppError from "../../errors/AppError";
 import httpStatus from "http-status";
+import { TUpdateProfile, TUseRegister } from "./user.interface";
 
 
 // ============================
 // User Register =======
 // ============================
 
-const registerUser = async (payload: any ) => {
+const registerUser = async (payload: TUseRegister ) => {
   console.log(payload)
   const hashPassword: string = await bcrypt.hash(payload.password, 12);
 
@@ -105,7 +106,7 @@ const getProfile = async (userId: string) => {
 // Update Profile  ======
 // ============================
 
-const updateProfile = async (payload: any, userId: string) => {
+const updateProfile = async (payload: TUpdateProfile, userId: string) => {
 
   const user = await prisma.user.findUnique({
     where: {

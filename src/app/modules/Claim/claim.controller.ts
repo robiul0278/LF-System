@@ -4,6 +4,12 @@ import sendResponse from "../../../shared/sendResponse";
 import { claimServices } from "./claim.services";
 import AppError from "../../errors/AppError";
 
+
+// ============================
+// Create Claim  ======
+// ============================
+
+
 const createClaim = catchAsync(async(req, res) => {
     
     if (!req.user || !req.user.id) {

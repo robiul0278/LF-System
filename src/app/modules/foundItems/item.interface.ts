@@ -7,3 +7,24 @@ declare module 'express-serve-static-core' {
     };
   }
 }
+
+export type TCategory = {
+  name: string;
+}
+
+
+
+export type TFoundItemReport = {
+  categoryId: string;
+  foundItemName: string;
+  description: string;
+  location: string;
+}
+
+
+export type TFilter = {
+  foundItemName: string;
+  location: string;
+  description: string;
+  searchTerm?: string;
+}

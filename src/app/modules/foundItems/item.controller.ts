@@ -11,8 +11,13 @@ import { itemFilterableFields } from "./item.constant";
 // ============================
 
 const createItemCategory = catchAsync(async(req, res) => {
+    if (!req.user || !req.user.id) {
+        throw new AppError(httpStatus.UNAUTHORIZED, "User not authenticated");
+    }
 
-    const result = await foundItemServices.createItemCategory(req.body)
+    const userId = req.user.id;
+
+    const result = await foundItemServices.createItemCategory(req.body, userId)
 
     sendResponse(res,{
         success: true,
@@ -21,6 +26,11 @@ const createItemCategory = catchAsync(async(req, res) => {
         data: result
     })
 })
+
+// ============================
+// Report Found Item   
+// ============================
+
 const reportFoundItem = catchAsync(async(req, res) => {
 
     if (!req.user || !req.user.id) {
@@ -38,6 +48,9 @@ const reportFoundItem = catchAsync(async(req, res) => {
     })
 })
 
+// ============================
+// Get All Found Item   
+// ============================
 
 const getFoundItems = catchAsync(async(req, res) => {    
     const filter = pick(req.query, itemFilterableFields)

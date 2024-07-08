@@ -4,12 +4,22 @@ import AppError from "../../errors/AppError";
 import { Prisma, UserStatus } from "@prisma/client";
 import { itemSearchAbleFields } from "./item.constant";
 import { paginationHelper } from "../../../helpers/paginationHelper";
+import { TCategory,  TFoundItemReport } from "./item.interface";
 
 // ============================
 // Create Found Item Category  =
 // ============================
 
-const createItemCategory = async (payload: any) => {
+const createItemCategory = async (payload: TCategory, userId: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+      status: UserStatus.ACTIVE,
+    },
+  });
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, "User not found");
+  }
 
   const result = await prisma.foundItemCategory.create({
     data: payload,
@@ -21,8 +31,7 @@ const createItemCategory = async (payload: any) => {
 // Report Found Items  ======
 // ============================
 
-const reportFoundItem = async (payload: any, userId: string) => {
-  console.log(payload);
+const reportFoundItem = async (payload: TFoundItemReport, userId: string) => {
 
   const user = await prisma.user.findUnique({
     where: {
