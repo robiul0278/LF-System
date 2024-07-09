@@ -13,6 +13,7 @@ auth(UserRole.ADMIN, UserRole.USER),
 
 router.post(
   "/register",
+  validateRequest(userValidation.userRegisterSchema),
     userController.registerUser
 );
 
@@ -24,6 +25,7 @@ router.get(
 router.put(
   "/my-profile",
   auth(UserRole.ADMIN, UserRole.USER),
+  validateRequest(userValidation.updateProfileSchema),
     userController.updateProfile
 );
 

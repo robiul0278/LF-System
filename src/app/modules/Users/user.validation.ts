@@ -1,7 +1,7 @@
 import { UserStatus } from "@prisma/client";
 import { z } from "zod";
 
-const userSchema = z.object({
+const userRegisterSchema = z.object({
   name: z.string({
     required_error: "Name is required",
   }),
@@ -21,14 +21,16 @@ const userSchema = z.object({
   }),
 });
 
-
-const updateStatus = z.object({
-  body: z.object({
-    status: z.enum([UserStatus.ACTIVE, UserStatus.DEACTIVATE]),
-  }),
+const updateProfileSchema = z.object({
+  bio: z.string({
+    required_error: "Bio is required",
+  }).min(1, "Bio cannot be empty"),
+  age: z.number({
+    required_error: "Age is required",
+  }).int("Age must be an integer").positive("Age must be a positive number"),
 });
 
 export const userValidation = {
-  userSchema,
-  updateStatus,
+  userRegisterSchema,
+  updateProfileSchema
 };
