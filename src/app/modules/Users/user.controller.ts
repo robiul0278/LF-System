@@ -22,21 +22,6 @@ const registerUser = catchAsync(async (req, res) => {
     });
 })
 
-// ============================
-// All User ==============
-// ============================
-
-const getAllFromDB = catchAsync(async (req, res) => {
-
-  const result = await userService.getAllUserFromDB();
-
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "User Data fetched!",
-    data: result,
-  });
-})
 
 // ============================
 // Get Profile ======
@@ -85,7 +70,6 @@ const userId = req?.user.id;
 
 export const userController = {
     registerUser,
-  getAllFromDB,
   getProfile,
   updateProfile
 };

@@ -6,10 +6,6 @@ import { userValidation } from "./user.validation";
 import { userController } from "./user.controller";
 const router = express.Router();
 
-router.get('/',
-auth(UserRole.ADMIN, UserRole.USER),
-  userController.getAllFromDB
-)
 
 router.post(
   "/register",

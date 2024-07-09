@@ -29,7 +29,7 @@ const createClaim = (payload, userId) => __awaiter(void 0, void 0, void 0, funct
         },
     });
     if (!user) {
-        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "User not found");
+        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "User not authenticated");
     }
     const foundItem = yield prisma_1.default.foundItem.findUnique({
         where: {

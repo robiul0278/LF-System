@@ -18,7 +18,7 @@ const createClaim = async (payload: TClaimItem, userId: string) => {
     },
   });
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, "User not found");
+    throw new AppError(httpStatus.NOT_FOUND, "User not authenticated");
   }
 
   const foundItem = await prisma.foundItem.findUnique({

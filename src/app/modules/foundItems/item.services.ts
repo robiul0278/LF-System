@@ -18,7 +18,7 @@ const createItemCategory = async (payload: TCategory, userId: string) => {
     },
   });
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, "User not found");
+    throw new AppError(httpStatus.NOT_FOUND, "You are not authorized!");
   }
 
   const result = await prisma.foundItemCategory.create({
@@ -40,7 +40,7 @@ const reportFoundItem = async (payload: TFoundItemReport, userId: string) => {
     },
   });
   if (!user) {
-    throw new AppError(httpStatus.NOT_FOUND, "User not found");
+    throw new AppError(httpStatus.NOT_FOUND, "You are not authorized!");
   }
 
   const category = await prisma.foundItemCategory.findUnique({

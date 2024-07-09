@@ -11,7 +11,6 @@ import { TUpdateProfile, TUseRegister } from "./user.interface";
 // ============================
 
 const registerUser = async (payload: TUseRegister ) => {
-  console.log(payload)
   const hashPassword: string = await bcrypt.hash(payload.password, 12);
 
   const result = await prisma.$transaction(async (transactionClient) => {
@@ -38,16 +37,6 @@ const registerUser = async (payload: TUseRegister ) => {
     };
   });
 
-  return result;
-};
-
-
-// ============================
-// Get All User ==============
-// ============================
-
-const getAllUserFromDB = async () => {
-  const result = await prisma.user.findMany();
   return result;
 };
 
@@ -118,7 +107,7 @@ const updateProfile = async (payload: TUpdateProfile, userId: string) => {
 
   if (!user) {
     console.error("User not found or not active");
-    throw new AppError(httpStatus.NOT_FOUND, "User Profile not found");
+    throw new AppError(httpStatus.NOT_FOUND, "User not authorized!");
   }
 
   if (!user.profile) {
@@ -158,7 +147,6 @@ const updateProfile = async (payload: TUpdateProfile, userId: string) => {
 
 export const userService = {
   registerUser,
-  getAllUserFromDB,
   getProfile,
   updateProfile,
 };

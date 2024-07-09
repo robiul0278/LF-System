@@ -43,18 +43,6 @@ const registerUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     });
 }));
 // ============================
-// All User ==============
-// ============================
-const getAllFromDB = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield user_services_1.userService.getAllUserFromDB();
-    (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
-        success: true,
-        message: "User Data fetched!",
-        data: result,
-    });
-}));
-// ============================
 // Get Profile ======
 // ============================
 const getProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -88,7 +76,6 @@ const updateProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
 }));
 exports.userController = {
     registerUser,
-    getAllFromDB,
     getProfile,
     updateProfile
 };

@@ -1,12 +1,14 @@
 const { z } = require('zod');
 
 const userLoginSchema = z.object({
-    email: z.string({
-      required_error: "Email is required",
-    }).email("Invalid email address"),
-    password: z.string({
-      required_error: "Password is required",
-    }).min(6, "Password must be at least 6 characters long"),
+    body: z.object({
+        email: z.string({
+            required_error: "Email is required",
+          }).email("Invalid email address"),
+          password: z.string({
+            required_error: "Password is required",
+          }).min(6, "Password must be at least 6 characters long"),
+    })
   });
   
 
@@ -15,8 +17,16 @@ const userLoginSchema = z.object({
   };
   
 
-  const categorySchema = z.object({
-    name: z.string({
-        required_error: "Category name is required",
+  export const userValidationSchema = z.object({
+    body: z.object({
+        password: z
+        .string({
+          invalid_type_error: 'Password must be string',
+        })
+        .max(20, { message: 'Password can not be more than 20 characters' })
+        .optional(),
+    
+    }),
     })
-  })
+    
+

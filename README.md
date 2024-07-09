@@ -13,4 +13,4 @@
 - ### Instructions for run this file locally
 - yarn install --force (run this command in terminal for this file for install all packages)
 
-## Api Documentation link => 
+## Api Documentation link => https://documenter.getpostman.com/view/34719059/2sA3e2gACi

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { authControllers } from "./auth.controller";
 import validateRequest from "../../middleware/validateRequest";
 import { authValidation } from "./auth.vllidation";
@@ -9,6 +9,5 @@ router.post(
     validateRequest(authValidation.userLoginSchema),
     authControllers.loginUser
 );
-
 
 export const authRoutes = router;

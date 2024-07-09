@@ -45,7 +45,6 @@ const http_status_1 = __importDefault(require("http-status"));
 // User Register =======
 // ============================
 const registerUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(payload);
     const hashPassword = yield bcrypt.hash(payload.password, 12);
     const result = yield prisma_1.default.$transaction((transactionClient) => __awaiter(void 0, void 0, void 0, function* () {
         // Create the user first
@@ -65,13 +64,6 @@ const registerUser = (payload) => __awaiter(void 0, void 0, void 0, function* ()
         });
         return Object.assign(Object.assign({}, createdUser), { profile: createdProfile });
     }));
-    return result;
-});
-// ============================
-// Get All User ==============
-// ============================
-const getAllUserFromDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma_1.default.user.findMany();
     return result;
 });
 // ============================
@@ -129,7 +121,7 @@ const updateProfile = (payload, userId) => __awaiter(void 0, void 0, void 0, fun
     });
     if (!user) {
         console.error("User not found or not active");
-        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "User Profile not found");
+        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "User not authorized!");
     }
     if (!user.profile) {
         console.error("Profile not found for user");
@@ -161,7 +153,6 @@ const updateProfile = (payload, userId) => __awaiter(void 0, void 0, void 0, fun
 });
 exports.userService = {
     registerUser,
-    getAllUserFromDB,
     getProfile,
     updateProfile,
 };

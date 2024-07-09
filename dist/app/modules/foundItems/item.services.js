@@ -41,7 +41,7 @@ const createItemCategory = (payload, userId) => __awaiter(void 0, void 0, void 0
         },
     });
     if (!user) {
-        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "User not found");
+        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "You are not authorized!");
     }
     const result = yield prisma_1.default.foundItemCategory.create({
         data: payload,
@@ -59,7 +59,7 @@ const reportFoundItem = (payload, userId) => __awaiter(void 0, void 0, void 0, f
         },
     });
     if (!user) {
-        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "User not found");
+        throw new AppError_1.default(http_status_1.default.NOT_FOUND, "You are not authorized!");
     }
     const category = yield prisma_1.default.foundItemCategory.findUnique({
         where: {
